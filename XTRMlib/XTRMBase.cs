@@ -14,7 +14,7 @@ namespace XTRMlib
 {
     public class XTRMBase : Object
     {
-        protected SqlConnection XConnection = null;     // sample3
+        protected SqlConnection XConnection = null;     // sample4
         protected static SqlConnection XTRMAPP = null;
         protected static int lLogID = 0;  // Default
         //public string className;
