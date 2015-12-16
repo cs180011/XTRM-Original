@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Xml;
+using System.Text;
 
 namespace XTRMlib
 {
@@ -438,6 +439,9 @@ namespace XTRMlib
         SqlCommandBuilder myCommandBuilder;
         DataTable myEvents = new DataTable();
         DataRow[] theseEvents = null;
+
+        public XmlWriterSettings settings;
+        public XmlWriter XMLOutput;
 
         public string banner = "";
         //XLogger XLog;
@@ -1086,7 +1090,179 @@ namespace XTRMlib
             // Render XML to represent the object.
             // if bDeep is false, then ONLY do this object.
             // if bDeep is true, then also do recursive objects.
-            return 0;
+            int rc = 0;
+            try
+            {
+                // Render XML to represent the object.
+                // if bDeep is false, then ONLY do this object.
+                // if bDeep is true, then also do recursive objects.
+                settings = new XmlWriterSettings();
+                settings.OmitXmlDeclaration = false;
+                settings.ConformanceLevel = ConformanceLevel.Document;
+                settings.CloseOutput = true;
+                settings.Indent = true;
+                settings.IndentChars = ("\t");
+                settings.Encoding = Encoding.UTF8;
+
+
+                XMLOutput = XmlWriter.Create(XMLOutFile, settings);
+                XMLOutput.WriteStartDocument();
+                XMLOutput.WriteStartElement("XLator");
+                //
+                // Render XML to represent the object.
+                XMLOutput.WriteStartElement("XEvent");
+
+                XMLOutput.WriteAttributeString("ID", "-1");
+                //XMLOutput.WriteWhitespace("\n");
+
+                XMLOutput.WriteStartElement("Tag");
+                XMLOutput.WriteString(eventTag);
+                XMLOutput.WriteEndElement();
+                //XMLOutput.WriteWhitespace("\n");
+                XMLOutput.WriteStartElement("UUID");
+                XMLOutput.WriteString(eventUUID);
+                XMLOutput.WriteEndElement();
+                //XMLOutput.WriteWhitespace("\n");
+                XMLOutput.WriteStartElement("Source");
+                XMLOutput.WriteString(eventSource);
+                XMLOutput.WriteEndElement();
+                //XMLOutput.WriteWhitespace("\n");
+                XMLOutput.WriteStartElement("Action");
+                XMLOutput.WriteString(eventAction);
+                XMLOutput.WriteEndElement();
+                //XMLOutput.WriteWhitespace("\n");
+                XMLOutput.WriteStartElement("DateStamp");
+                XMLOutput.WriteString(eventDate);
+                XMLOutput.WriteEndElement();
+                //XMLOutput.WriteWhitespace("\n");
+                XMLOutput.WriteStartElement("User");
+                XMLOutput.WriteString(eventUser);
+                XMLOutput.WriteEndElement();
+                //XMLOutput.WriteWhitespace("\n");
+                XMLOutput.WriteStartElement("PIN");
+                XMLOutput.WriteString(eventUUID);
+                XMLOutput.WriteEndElement();
+                //XMLOutput.WriteWhitespace("\n");
+                XMLOutput.WriteStartElement("Status");
+                XMLOutput.WriteString("0");
+                XMLOutput.WriteEndElement();
+                //XMLOutput.WriteWhitespace("\n");
+                if (eventParm1 != null)
+                {
+                    if (eventParm1.Length > 0)
+                    {
+                        XMLOutput.WriteStartElement("Parm1");
+                        XMLOutput.WriteString(eventParm1);
+                        XMLOutput.WriteEndElement();
+                        //XMLOutput.WriteWhitespace("\n");
+                    }
+                }
+                if (eventParm2 != null)
+                {
+                    if (eventParm2.Length > 0)
+                    {
+                        XMLOutput.WriteStartElement("Parm2");
+                        XMLOutput.WriteString(eventParm2);
+                        XMLOutput.WriteEndElement();
+                        //XMLOutput.WriteWhitespace("\n");
+                    }
+                }
+                if (eventParm3 != null)
+                {
+                    if (eventParm3.Length > 0)
+                    {
+                        XMLOutput.WriteStartElement("Parm3");
+                        XMLOutput.WriteString(eventParm3);
+                        XMLOutput.WriteEndElement();
+                        //XMLOutput.WriteWhitespace("\n");
+                    }
+                }
+                if (eventParm4 != null)
+                {
+                    if (eventParm4.Length > 0)
+                    {
+                        XMLOutput.WriteStartElement("Parm4");
+                        XMLOutput.WriteString(eventParm4);
+                        XMLOutput.WriteEndElement();
+                        //XMLOutput.WriteWhitespace("\n");
+                    }
+                }
+                if (eventParm5 != null)
+                {
+                    if (eventParm5.Length > 0)
+                    {
+                        XMLOutput.WriteStartElement("Parm5");
+                        XMLOutput.WriteString(eventParm5);
+                        XMLOutput.WriteEndElement();
+                        //XMLOutput.WriteWhitespace("\n");
+                    }
+                }
+                if (eventParm6 != null)
+                {
+                    if (eventParm6.Length > 0)
+                    {
+                        XMLOutput.WriteStartElement("Parm6");
+                        XMLOutput.WriteString(eventParm6);
+                        XMLOutput.WriteEndElement();
+                        //XMLOutput.WriteWhitespace("\n");
+                    }
+                }
+                if (eventParm7 != null)
+                {
+                    if (eventParm7.Length > 0)
+                    {
+                        XMLOutput.WriteStartElement("Parm7");
+                        XMLOutput.WriteString(eventParm7);
+                        XMLOutput.WriteEndElement();
+                        //XMLOutput.WriteWhitespace("\n");
+                    }
+                }
+                if (eventParm8 != null)
+                {
+                    if (eventParm8.Length > 0)
+                    {
+                        XMLOutput.WriteStartElement("Parm8");
+                        XMLOutput.WriteString(eventParm8);
+                        XMLOutput.WriteEndElement();
+                        //XMLOutput.WriteWhitespace("\n");
+                    }
+                }
+                if (eventParm9 != null)
+                {
+                    if (eventParm9.Length > 0)
+                    {
+                        XMLOutput.WriteStartElement("Parm9");
+                        XMLOutput.WriteString(eventParm9);
+                        XMLOutput.WriteEndElement();
+                        //XMLOutput.WriteWhitespace("\n");
+                    }
+                }
+                if (eventParm10 != null)
+                {
+                    if (eventParm10.Length > 0)
+                    {
+                        XMLOutput.WriteStartElement("Parm10");
+                        XMLOutput.WriteString(eventParm10);
+                        XMLOutput.WriteEndElement();
+                        //XMLOutput.WriteWhitespace("\n");
+                    }
+                }
+
+                XMLOutput.WriteEndElement();
+                //XMLOutput.WriteWhitespace("\n");         // End Event
+
+                XMLOutput.WriteEndElement();
+                //XMLOutput.WriteWhitespace("\n");         // End XLator
+                XMLOutput.Flush();
+                XMLOutput.Close();
+            }
+            catch (Exception ex)
+            {
+                exCount_XML++;
+                XLogger(2210, -1, string.Format("XML={0}; Message={1}", XMLOutFile, ex.Message));
+                rc = -1;
+            }
+            return rc;
         }
         public new static XTRMObject consumeXML(Dictionary<String, String> existingConfig, string XmlFragment, int lVariant = 0, bool bDeep = false)
         {
