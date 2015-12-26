@@ -20,7 +20,7 @@ namespace XTRMFileAgentService
         private System.Timers.Timer aTimer;
         int beats = 0;
         //bool bProcessing = false;
-        XTRMFileAgent myFileAgentCore;
+        XTRMFileAgentCore myFileAgentCore;
         long serviceLife = 0;
         long memorySize = 0;
         int agentHoldTime = 10;
@@ -74,7 +74,7 @@ namespace XTRMFileAgentService
 
             try
             {
-                myFileAgentCore = new XTRMFileAgent(eventLog1);
+                myFileAgentCore = new XTRMFileAgentCore(eventLog1);
                 xBotID = XTRMObject.getXTRMID();
                 Process execProcess = Process.GetCurrentProcess();
                 int rc = myFileAgentCore.Initialize();

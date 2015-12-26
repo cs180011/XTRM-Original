@@ -10,7 +10,7 @@ namespace XTRMlib
     // Added Job Host 20150605
     public class XTRMJob : XTRMObject
     {
-        //////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////
         // XLATOR CONFIG SUPPORT
         // Can contain a list of tasks
         public Dictionary<String, String> config;
@@ -21,7 +21,7 @@ namespace XTRMlib
         public string containingToolkit = "";
         //jobTasks. 
         
-        //////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////
         SqlDataAdapter myAdapter;
         SqlCommandBuilder myCommandBuilder;
         DataTable myJobs = new DataTable();

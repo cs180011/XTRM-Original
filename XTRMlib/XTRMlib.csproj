@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="XTRMBase.cs" />
     <Compile Include="XTRMBulkLoader.cs" />
+    <Compile Include="XTRMConfig.cs" />
     <Compile Include="XTRMEventAgent.cs" />
     <Compile Include="XTRMEventLoader.cs" />
     <Compile Include="XTRMExecutive.cs" />

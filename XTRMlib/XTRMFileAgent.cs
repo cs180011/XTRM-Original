@@ -32,7 +32,7 @@ namespace XTRMlib
         //myEvent = thisEvent;
         //}
     }
-    public class XTRMFileAgent : XTRMObject
+    public class XTRMFileAgentCore : XTRMObject
     {
         private static Semaphore _pool;
         static EventLog myLog;
@@ -52,7 +52,7 @@ namespace XTRMlib
         //static Dictionary<DateTime, XEvent> eventOrder = new Dictionary<DateTime, XEvent>();
         static Dictionary<string, XTRMEvent> eventOrder = new Dictionary<string, XTRMEvent>();
 
-        public XTRMFileAgent(EventLog thisLog)
+        public XTRMFileAgentCore(EventLog thisLog)
         {
             myLog = thisLog;
             entities = new List<XTRMFSEntity>();
